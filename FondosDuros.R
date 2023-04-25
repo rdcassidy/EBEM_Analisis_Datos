@@ -16,14 +16,19 @@ library(dplyr)
 library(ggplot2)
 
 CoberturaMatriz %>%
-  filter(M1 != 0) %>%
-  ggplot(aes(x="", y=M1, fill=Cobertura)) +
+  filter(M5 != 0) %>%
+  ggplot(aes(x="", y=M5, fill=Cobertura)) +
   geom_bar(stat="identity", width=1, color="white") +
   coord_polar("y", start=0) +
   theme_void() +
-  labs(title="M1")
+  labs(title="M5")
 
 
 ##Abundancia histograma
 hist(AbundanciaMatriz$M1)
 ggplot(AbundanciaMatriz)
+
+
+
+
+soy profe rober guiri y tu eres elena 
