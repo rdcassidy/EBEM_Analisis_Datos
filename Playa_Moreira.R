@@ -39,7 +39,7 @@ Margalef <- parc %>%
   group_by(Parcela) %>% 
   summarise(Margalef= (length(unique(Especie))-1)/log(NROW(Especie)))
 Margalef
-ggplot(Margalef)
+
 
 library(dplyr)
 Margalef <- Margalef %>%
@@ -50,7 +50,7 @@ Margalef <- Margalef %>%
   rename(column_name = new_col)
 
 Margalef
-packageVersion("vegan")
+
 #join indices into same df##
 
 merged_indices <- merge(H, S, by = "column_name")
@@ -62,11 +62,12 @@ all_indices <- all_indices %>%
 select (-Parcela)
 all_indices
 
+
 # Load required packages
 library(ggplot2)
 
 
-# Create bar charts of S and H
+# Create bar charts of indices
 ggplot(S, aes(x = column_name, y = S)) +
   geom_bar(stat = "identity", fill = "steelblue") +
   ggtitle("Bar Chart of Column S") +
@@ -134,3 +135,15 @@ mergedGT
 
 
 barchart <- mergedGT %>% ggplot(aes(x = ))
+
+longGT <-mergedGT %>% pivot_longer(-GT)
+longGT
+groupedGT <- group_by(longGT, name)
+groupedGT
+
+GTbarchart <- ggplot(groupedGT, aes(x = name, y = value, fill = GT)) +
+  geom_bar(position = "dodge", stat = "identity") +
+  labs(x = "Cuadrícula", y = "Valor", fill = "Indice", title = "Grupos Troficos") +
+  theme_gray()
+GTbarchart
+help(ggplot)
