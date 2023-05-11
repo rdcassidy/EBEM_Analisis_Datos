@@ -11,6 +11,7 @@ MatrizAbundancia<- read_sheet("https://docs.google.com/spreadsheets/d/1JnAXYvbKo
 view(MatrizAbundancia)
 
 
+
 #riqueza de especies de cada Muestra del transecto#
 Riqueza <- colSums(apply(MatrizAbundancia[-1, 3:6], 2, function(x) x > 0))
 
@@ -103,14 +104,44 @@ indices_grafico
 #####grupos troficos graficos####
 
 
-piechart <- MatrizAbundancia %>%
+piechart1 <- MatrizAbundancia %>%
+  filter(M1 != 0) %>% 
+  ggplot(aes(x="", y=M1, fill=GT)) +
+  geom_bar(stat="identity", width=1, ) +
+  coord_polar("y", start=0) +
+  theme_void() +
+  labs(title="M1")
+
+piechart2 <- MatrizAbundancia %>%
+  filter(M2 != 0) %>%
+  ggplot(aes(x="", y=M2, fill=GT)) +
+  geom_bar(stat="identity", width=1, ) +
+  coord_polar("y", start=0) +
+  theme_void() +
+  labs(title="M2")
+
+piechart3 <- MatrizAbundancia %>%
+  filter(M3 != 0) %>%
   ggplot(aes(x="", y=M3, fill=GT)) +
   geom_bar(stat="identity", width=1, ) +
   coord_polar("y", start=0) +
   theme_void() +
   labs(title="M3")
-piechart
 
+piechart4 <- MatrizAbundancia %>%
+  filter(M4 != 0) %>%
+  ggplot(aes(x="", y=M4, fill=GT)) +
+  geom_bar(stat="identity", width=1, ) +
+  coord_polar("y", start=0) +
+  theme_void() +
+  labs(title="M4")
+
+piechart1
+piechart2
+
+piechart3
+
+piechart4
 
 # use aggregate to sum the values of A by group in B
 sum_GT1 <- aggregate(M1~ GT, data = MatrizAbundancia, FUN = sum)
@@ -143,7 +174,7 @@ groupedGT
 
 GTbarchart <- ggplot(groupedGT, aes(x = name, y = value, fill = GT)) +
   geom_bar(position = "dodge", stat = "identity") +
-  labs(x = "Cuadrícula", y = "Valor", fill = "Indice", title = "Grupos Troficos") +
+  labs(x = "Cuadrícula", y = "Valor", fill = "Grupo Trófico", title = "Grupos Tròficos") +
   theme_gray()
 GTbarchart
 help(ggplot)

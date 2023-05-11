@@ -63,9 +63,9 @@ longcob
 lc <- longcob %>% select(longcob$name, everything())
 lc
 
-graf_cob <- ggplot(lc, aes(fill= Cobertura, y=value, x=name)) + 
+graf_cob <- ggplot(longcob, aes(fill= Cobertura, y=value, x=name)) + 
   geom_bar(position="stack", stat="identity", color = "black", width = 0.5)  +
-  labs(title = "Cobertura de Parcelas", x = "Nombre", y = "Valor") +
+  labs(title = "Cobertura de Parcelas", x = "Cuadrícula", y = "Valor") +
 theme(legend.box.background = element_rect(colour = "black"))
 graf_cob
 
@@ -81,12 +81,19 @@ orderedabund
 
 graf_abund<- ggplot(longabund, aes(x = name, y = value, fill = Taxon)) +
   geom_bar(position = "dodge", stat = "identity") +
-  labs(x = "Cuadrícula", y = "Valor", fill = "Taxon") +
+  labs(title = "Abundancia", x = "Cuadrícula", y = "Valor", fill = "Taxon") +
   theme_gray()
 graf_abund
 
 
 
+
+
+
+
+
+
+#############################################################################################################################################
 
 #### no uses nada debajo de aquí, son intentos previos######################################################################################
 
