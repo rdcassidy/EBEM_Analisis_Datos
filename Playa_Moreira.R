@@ -58,7 +58,7 @@ merged_indices <- merge(H, S, by = "column_name")
 merged_indices
 
 all_indices <- merge(merged_indices, Margalef, by = "column_name")
-
+all_indices
 all_indices <- all_indices %>%  
 select (-Parcela)
 all_indices
